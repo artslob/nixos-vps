@@ -18,9 +18,9 @@
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
   # Define on which hard drive you want to install Grub.
   # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
-  boot.loader.grub.device = "/dev/vda"; # or "nodev" for efi only
+  boot.loader.grub.device = "/dev/vda";
 
-  # networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixos";
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -81,6 +81,10 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
+    git
+    htop
+    stow
+    nixfmt
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
