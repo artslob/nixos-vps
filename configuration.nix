@@ -85,6 +85,7 @@
     htop
     stow
     nixfmt
+    pre-commit
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
