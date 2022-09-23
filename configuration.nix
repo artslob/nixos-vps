@@ -19,6 +19,7 @@
   # Define on which hard drive you want to install Grub.
   # boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
   boot.loader.grub.device = "/dev/vda";
+  virtualisation.hypervGuest.enable = false;
 
   networking.hostName = "nixos";
   # Pick only one of the below networking options.
