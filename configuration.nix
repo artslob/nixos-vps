@@ -32,8 +32,7 @@
   networking.defaultGateway = "176.124.219.1";
   networking.nameservers = [ "8.8.8.8" "8.8.4.4" ];
 
-  # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "Europe/Moscow";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
