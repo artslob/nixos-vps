@@ -47,6 +47,17 @@
     stow
     nixfmt
     pre-commit
+    ripgrep
+    fd
+    bat
+    exa
+    du-dust
+    procs
+    broot
+    lsd
+    zoxide
+    difftastic
+    delta
   ];
 
   programs.gnupg.agent = {
