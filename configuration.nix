@@ -48,16 +48,16 @@
     nixfmt
     pre-commit
     ripgrep
-    fd
-    bat
-    exa
-    du-dust
-    procs
-    broot
-    lsd
-    zoxide
-    difftastic
-    delta
+    fd # alternative to find
+    bat # cat clone with syntax highlighting
+    exa # alternative to ls
+    lsd # alternative to ls
+    du-dust # disk usage
+    procs # info about processes
+    broot # combines tree, cd and more
+    zoxide # smarter cd command
+    difftastic # syntax-aware diff
+    delta # syntax-highlighting pager for git
   ];
 
   programs.ssh.startAgent = true;
