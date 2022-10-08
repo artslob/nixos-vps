@@ -43,6 +43,13 @@ in {
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOFI44vpL8QXr0L4jeuq3gXD8y+/fLumPvKVAjIyNcr+"
   ];
+  security.sudo.extraRules = [{
+    users = [ "artslob" ];
+    commands = [{
+      command = "ALL";
+      options = [ "NOPASSWD" "SETENV" ];
+    }];
+  }];
 
   environment.systemPackages = with pkgs; [
     vim
