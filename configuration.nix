@@ -146,6 +146,25 @@ in {
     g = "git";
   };
 
+  programs.git = {
+    enable = true;
+    config = {
+      core.editor = "vim";
+      init.defaultBranch = "main";
+      alias = {
+        a = "add";
+        s = "status";
+        c = "commit";
+        d = "diff";
+        dc = "diff --cached";
+        pu = "push";
+        ch = "checkout";
+        lol = "log --graph --decorate --pretty=oneline --abbrev-commit";
+        lola = "log --graph --decorate --pretty=oneline --abbrev-commit --all";
+      };
+    };
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
