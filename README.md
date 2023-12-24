@@ -39,10 +39,10 @@ When you loaded to installed OS you need to download this project
 and make symbolic link to it from `/etc/nixos`:
 
 ```bash
-git clone git@github.com:artslob/vps-nixos.git
-cp /etc/nixos/hardware-configuration.nix vps-nixos
+git clone git@github.com:artslob/nixos-vps.git
+cp /etc/nixos/hardware-configuration.nix nixos-vps
 rm -rf /etc/nixos
-ln -s vps-nixos /etc/nixos
+ln -s nixos-vps /etc/nixos
 ```
 
 ## VPS naming
