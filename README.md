@@ -1,8 +1,8 @@
 # VPS NixOS config
 
-## Installation from VNC (virtual network computing)
+## Installation from VNC
 
-Before following steps from [official manual](https://nixos.org/manual/nix/stable/)
+Before following steps from [official manual](https://nixos.org/manual/nixos/stable/#sec-installation-manual)
 you need to setup installation environment as root:
 
 ```bash
@@ -18,7 +18,7 @@ echo "nameserver 8.8.4.4" > /etc/resolv.conf
 
 To get interface name run `ip a`.
 
-To allow connection to installation image from local computer (without
+To allow ssh connection to installation image from local computer (without
 using VNC):
 
 ```bash
