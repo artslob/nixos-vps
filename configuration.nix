@@ -47,7 +47,7 @@
     ripgrep
     fd # alternative to find
     bat # cat clone with syntax highlighting
-    exa # alternative to ls
+    eza # alternative to ls
     lsd # alternative to ls
     du-dust # disk usage
     procs # info about processes
