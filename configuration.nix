@@ -25,6 +25,7 @@
       "$6$pMUxmD1xGTuyNGy2$4M2s8wWzN4xuRA/vdJ3pToP.Fh5WLr9ldMKT3wOM.LX3kOpi9UrzjzvNZWbb4rq03zJ3V9Yc2m71tWWKjvPuU0";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOFI44vpL8QXr0L4jeuq3gXD8y+/fLumPvKVAjIyNcr+"
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDGu+Aro+2eufX4/TsFavrtOuS+NUqXKAFa0GhQK+uaGS0h3fQhy+t2P8iLerWpORuGUfmrGHR8eHiug6rzRQTQWWaMWrJW+8pydxtNqoBmOxs85KRbuLUZZyUb5hJG/tkFTJUHVADMQ4CI7vuu+ofdkQlhhtaRwqyTLP3HSEz782H46AYsgH4j10hpCtY86bdnCL18y+FdSy2rp7lbrNyHYT/ezwkf0hhzXhCydfaxOdMP5xr+4hXblPkexXjX5iWmeSaBhnlsdMt6qd3yP3JVde92LCyAf5TZNWhRbFZx48UfBMvOh+ADTDS6iv764svFSw5Cp6TcJzM3eobJuTnAC3aSXZnotomTud5c+BKAzFdbCbAm6b/pZ/x5tycWJSXz3M82c3FZZ5Tm5hT9zeYbxyvHdhrCEBVwN5WkdI3DJaIOJ4yZZMVM9nYoCnwA4HBI4D19A/w1F7tgPAeFM97RMKwaxzBZsV0H9H3f0czx6FsqSq/2wJDQLhX+DtaEZhOQzR3b6gOgN4XUlkvuACVMFtMtfIhQY00lCyWL3yuiMoHiuoE2vidb1b2lW+cAjgRV31NO4x7m2lV2fPTae/zmlk/Z4faKNb4CUOUwUUBVhJiYt1oeWxDQhXtEjZ5+plkAoMvPXE5jQ2mLzkc8qYHoqqqtIj4uG5r+J0gCgkesXQ== artslob@yandex.ru"
     ];
   };
   security.sudo.extraRules = [{
