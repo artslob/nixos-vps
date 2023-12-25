@@ -26,32 +26,7 @@ mkdir ~/.ssh
 curl -L https://github.com/artslob.keys > ~/.ssh/authorized_keys
 ```
 
-According to [manual](https://nixos.org/manual/nixos/stable/#sec-installation-manual):
-```
-parted /dev/sda -- mklabel gpt
-parted /dev/sda -- mkpart root ext4 512MB -5GB
-parted /dev/sda -- mkpart swap linux-swap -5GB 100%
-parted /dev/sda -- mkpart ESP fat32 1MB 512MB
-parted /dev/sda -- set 3 esp on
-
-mkfs.ext4 -L nixos /dev/sda1
-mkswap -L swap /dev/sda2
-mkfs.fat -F 32 -n boot /dev/sda3
-
-mount /dev/disk/by-label/nixos /mnt
-mkdir -p /mnt/boot
-mount /dev/disk/by-label/boot /mnt/boot
-swapon /dev/sda2
-
-nixos-generate-config --root /mnt
-vim /mnt/etc/nixos/configuration.nix
-nixos-install
-
-mkdir /mnt/root/.ssh
-curl -L https://github.com/artslob.keys > /mnt/root/.ssh/authorized_keys
-```
-
-or legacy boot:
+Connect with ssh and do Legacy Boot (MBR) installation by [manual](https://nixos.org/manual/nixos/stable/#sec-installation-manual):
 ```
 parted /dev/sda -- mklabel msdos
 parted /dev/sda -- mkpart primary 1MB -5GB
@@ -68,6 +43,7 @@ nixos-generate-config --root /mnt
 vim /mnt/etc/nixos/configuration.nix
 nixos-install
 
+# todo remove manual ssh setup?
 mkdir /mnt/root/.ssh
 curl -L https://github.com/artslob.keys > /mnt/root/.ssh/authorized_keys
 ```
