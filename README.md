@@ -41,6 +41,12 @@ swapon /dev/sda2
 
 nixos-generate-config --root /mnt
 vim /mnt/etc/nixos/configuration.nix
+```
+
+To get download link for config [click here](https://github.com/artslob/nixos-vps/raw/installation-steps/configuration.nix).
+
+```
+curl -L '<link>' > /mnt/etc/nixos/configuration.nix
 nixos-install
 
 # todo remove manual ssh setup?
