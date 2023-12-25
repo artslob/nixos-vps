@@ -2,33 +2,18 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-let
-  # generate via openvpn --genkey --secret openvpn-laptop.key
-  client-key = "/home/artslob/openvpn-keys/openvpn-laptop.key";
-  domain = "176.124.219.171";
-  vpn-dev = "tun0";
-  port = 1194;
-in {
+{ config, pkgs, ... }: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
   boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  boot.loader.grub.device = "/dev/vda";
-  virtualisation.hypervGuest.enable = false;
+  boot.loader.grub.device = "/dev/sda";
 
-  networking.hostName = "bravo";
-  networking.interfaces.ens3.ipv4.addresses = [{
-    address = "176.124.219.171";
-    prefixLength = 24;
-  }];
-  networking.defaultGateway = "176.124.219.1";
-  networking.nameservers = [ "8.8.8.8" "8.8.4.4" ];
+  networking.hostName = "alfa";
 
-  time.timeZone = "Europe/Moscow";
+  time.timeZone = "Asia/Bangkok";
 
   users.users.artslob = {
     isNormalUser = true;
@@ -85,62 +70,6 @@ in {
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
 
-  # sudo systemctl start nat
-  networking.nat = {
-    enable = true;
-    externalInterface = "ens3";
-    internalInterfaces = [ vpn-dev ];
-  };
-  #  networking.firewall.trustedInterfaces = [ vpn-dev ];
-  #  networking.firewall.allowedUDPPorts = [ port ];
-  services.openvpn.servers.smartphone.config = ''
-    dev ${vpn-dev}
-    proto udp
-    ifconfig 10.8.0.1 10.8.0.2
-    secret ${client-key}
-    port ${toString port}
-
-    cipher AES-256-CBC
-    auth-nocache
-
-    comp-lzo
-    keepalive 10 60
-    ping-timer-rem
-    persist-tun
-    persist-key
-  '';
-  environment.etc."openvpn/smartphone-client.ovpn" = {
-    text = ''
-      dev tun
-      remote "${domain}"
-      ifconfig 10.8.0.2 10.8.0.1
-      port ${toString port}
-      redirect-gateway def1
-
-      cipher AES-256-CBC
-      auth-nocache
-
-      comp-lzo
-      keepalive 10 60
-      resolv-retry infinite
-      nobind
-      persist-key
-      persist-tun
-      secret [inline]
-
-    '';
-    mode = "600";
-  };
-  system.activationScripts.openvpn-addkey = ''
-    f="/etc/openvpn/smartphone-client.ovpn"
-    if ! grep -q '<secret>' $f; then
-      echo "appending secret key"
-      echo "<secret>" >> $f
-      cat ${client-key} >> $f
-      echo "</secret>" >> $f
-    fi
-  '';
-
   programs.bash.shellAliases = {
     p = "pwd";
     g = "git";
@@ -174,4 +103,3 @@ in {
   system.stateVersion = "23.11";
 
 }
-
