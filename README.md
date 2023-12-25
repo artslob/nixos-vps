@@ -48,10 +48,6 @@ To get download link for config [click here](https://github.com/artslob/nixos-vp
 ```
 curl -L '<link>' > /mnt/etc/nixos/configuration.nix
 nixos-install
-
-# todo remove manual ssh setup?
-mkdir /mnt/root/.ssh
-curl -L https://github.com/artslob.keys > /mnt/root/.ssh/authorized_keys
 ```
 
 If you already made partitions and want just to reinstall OS:
