@@ -51,6 +51,27 @@ mkdir /mnt/root/.ssh
 curl -L https://github.com/artslob.keys > /mnt/root/.ssh/authorized_keys
 ```
 
+or legacy boot:
+```
+parted /dev/sda -- mklabel msdos
+parted /dev/sda -- mkpart primary 1MB -5GB
+parted /dev/sda -- set 1 boot on
+parted /dev/sda -- mkpart primary linux-swap -5GB 100%
+
+mkfs.ext4 -L nixos /dev/sda1
+mkswap -L swap /dev/sda2
+
+mount /dev/disk/by-label/nixos /mnt
+swapon /dev/sda2
+
+nixos-generate-config --root /mnt
+vim /mnt/etc/nixos/configuration.nix
+nixos-install
+
+mkdir /mnt/root/.ssh
+curl -L https://github.com/artslob.keys > /mnt/root/.ssh/authorized_keys
+```
+
 If you already made partitions and want just to reinstall OS:
 
 ```bash
