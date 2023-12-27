@@ -75,7 +75,7 @@
       addSSL = false;
       enableACME = false;
       default = true;
-      locations."/" = "301 http://ya.ru";
+      locations."/" = { return = "301 http://ya.ru"; };
     };
     # security.acme = {
     #   acceptTerms = true;
