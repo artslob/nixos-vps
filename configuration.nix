@@ -69,6 +69,20 @@
     };
   };
 
+  services.nginx = {
+    enable = true;
+    virtualHosts."artslob.ru" = {
+      addSSL = false;
+      enableACME = false;
+      default = true;
+      locations."/" = "301 http://ya.ru";
+    };
+    # security.acme = {
+    #   acceptTerms = true;
+    #   defaults.email = "foo@bar.com";
+    # };
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
