@@ -83,6 +83,12 @@
     # };
   };
 
+  environment.etc."artslob.me".source = builtins.fetchGit {
+    url = "https://github.com/artslob/artslob.ru";
+    rev = "a9f4d9cd761260d4145986fd71cc1512a96b907a";
+    submodules = true;
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
