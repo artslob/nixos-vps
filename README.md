@@ -50,6 +50,8 @@ curl -L '<link>' > /mnt/etc/nixos/configuration.nix
 nixos-install
 ```
 
+// TODO note about uploading ssh keys to `/root/.ssh`
+
 If you already made partitions and want just to reinstall OS:
 
 ```bash
