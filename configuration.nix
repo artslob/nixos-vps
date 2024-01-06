@@ -71,11 +71,11 @@
 
   services.nginx = {
     enable = true;
-    virtualHosts."artslob.ru" = {
+    virtualHosts."artslob.me" = {
       addSSL = false;
       enableACME = false;
       default = true;
-      locations."/" = { return = "301 http://ya.ru"; };
+      root = "/etc/artslob.me/www-fallout";
     };
     # security.acme = {
     #   acceptTerms = true;
