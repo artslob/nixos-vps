@@ -71,11 +71,23 @@
 
   services.nginx = {
     enable = true;
-    virtualHosts."artslob.me" = {
+    virtualHosts."www.artslob.me artslob.me" = {
       addSSL = false;
       enableACME = false;
       default = true;
       root = "/etc/artslob.me/www-fallout";
+    };
+    virtualHosts."subd-rk-1.artslob.me" = {
+      addSSL = false;
+      enableACME = false;
+      root = "/etc/artslob.me/subd_rk/rk1";
+      locations."/" = { extraConfig = "autoindex on;"; };
+    };
+    virtualHosts."subd-rk-2.artslob.me" = {
+      addSSL = false;
+      enableACME = false;
+      root = "/etc/artslob.me/subd_rk/rk2";
+      locations."/" = { extraConfig = "autoindex on;"; };
     };
     # security.acme = {
     #   acceptTerms = true;
