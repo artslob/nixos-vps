@@ -71,6 +71,14 @@
 
   services.nginx = {
     enable = true;
+    virtualHosts."acmechallenge.artslob.me" = {
+      # Catchall vhost, will redirect users to HTTPS for all vhosts
+      serverAliases = [ "*.artslob.me" ];
+      locations."/.well-known/acme-challenge" = {
+        root = "/var/lib/acme/.challenges";
+      };
+      locations."/" = { return = "303 https://$host$request_uri"; };
+    };
     virtualHosts."www.artslob.me artslob.me" = {
       addSSL = false;
       enableACME = false;
@@ -78,8 +86,8 @@
       root = "/etc/artslob.me/www-fallout";
     };
     virtualHosts."subd-rk-1.artslob.me" = {
-      addSSL = false;
-      enableACME = false;
+      forceSSL = true;
+      enableACME = true;
       root = "/etc/artslob.me/subd_rk/rk1";
       locations."/" = { extraConfig = "autoindex on;"; };
     };
@@ -100,6 +108,29 @@
     rev = "a9f4d9cd761260d4145986fd71cc1512a96b907a";
     submodules = true;
   };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "artyomslob@gmail.com";
+    # TODO remove
+    # defaults.server = "https://acme-staging-v02.api.letsencrypt.org/directory";
+    certs."subd-rk-1.artslob.me" = {
+      webroot = "/var/lib/acme/.challenges";
+      email = "artyomslob@gmail.com";
+      # Ensure that the web server you use can read the generated certs
+      # Take a look at the group option for the web server you choose.
+      group = "nginx";
+      # Since we have a wildcard vhost to handle port 80,
+      # we can generate certs for anything!
+      # Just make sure your DNS resolves them.
+      # extraDomainNames = [ "www.artslob.me" ];
+    };
+  };
+
+  # /var/lib/acme/.challenges must be writable by the ACME user
+  # and readable by the Nginx user. The easiest way to achieve
+  # this is to add the Nginx user to the ACME group.
+  users.users.nginx.extraGroups = [ "acme" ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
