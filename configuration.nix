@@ -71,23 +71,15 @@
 
   services.nginx = {
     enable = true;
-    virtualHosts."acmechallenge.artslob.me" = {
-      # Catchall vhost, will redirect users to HTTPS for all vhosts
-      serverAliases = [ "*.artslob.me" ];
-      locations."/.well-known/acme-challenge" = {
-        root = "/var/lib/acme/.challenges";
-      };
-      locations."/" = { return = "303 https://$host$request_uri"; };
-    };
-    virtualHosts."www.artslob.me artslob.me" = {
-      addSSL = false;
-      enableACME = false;
+    virtualHosts."www.artslob.me" = {
+      addSSL = true;
+      enableACME = true;
       default = true;
       root = "/etc/artslob.me/www-fallout";
     };
     virtualHosts."subd-rk-1.artslob.me" = {
-      forceSSL = true;
-      enableACME = true;
+      addSSL = false;
+      enableACME = false;
       root = "/etc/artslob.me/subd_rk/rk1";
       locations."/" = { extraConfig = "autoindex on;"; };
     };
@@ -97,10 +89,6 @@
       root = "/etc/artslob.me/subd_rk/rk2";
       locations."/" = { extraConfig = "autoindex on;"; };
     };
-    # security.acme = {
-    #   acceptTerms = true;
-    #   defaults.email = "foo@bar.com";
-    # };
   };
 
   environment.etc."artslob.me".source = builtins.fetchGit {
@@ -114,8 +102,8 @@
     defaults.email = "artyomslob@gmail.com";
     # TODO remove
     # defaults.server = "https://acme-staging-v02.api.letsencrypt.org/directory";
-    certs."subd-rk-1.artslob.me" = {
-      webroot = "/var/lib/acme/.challenges";
+    certs."www.artslob.me" = {
+      webroot = "/var/lib/acme/acme-challenge";
       email = "artyomslob@gmail.com";
       # Ensure that the web server you use can read the generated certs
       # Take a look at the group option for the web server you choose.
