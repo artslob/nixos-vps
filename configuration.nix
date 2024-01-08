@@ -78,14 +78,14 @@
       root = "/etc/artslob.me/www-fallout";
     };
     virtualHosts."subd-rk-1.artslob.me" = {
-      addSSL = false;
-      enableACME = false;
+      forceSSL = true;
+      enableACME = true;
       root = "/etc/artslob.me/subd_rk/rk1";
       locations."/" = { extraConfig = "autoindex on;"; };
     };
     virtualHosts."subd-rk-2.artslob.me" = {
-      addSSL = false;
-      enableACME = false;
+      forceSSL = true;
+      enableACME = true;
       root = "/etc/artslob.me/subd_rk/rk2";
       locations."/" = { extraConfig = "autoindex on;"; };
     };
@@ -111,7 +111,7 @@
       # Since we have a wildcard vhost to handle port 80,
       # we can generate certs for anything!
       # Just make sure your DNS resolves them.
-      # extraDomainNames = [ "subd-rk-1.artslob.me" "subd-rk-2.artslob.me" ];
+      extraDomainNames = [ "subd-rk-1.artslob.me" "subd-rk-2.artslob.me" ];
     };
   };
 
