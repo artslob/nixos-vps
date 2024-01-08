@@ -72,7 +72,7 @@
   services.nginx = {
     enable = true;
     virtualHosts."www.artslob.me" = {
-      addSSL = true;
+      forceSSL = true;
       enableACME = true;
       default = true;
       root = "/etc/artslob.me/www-fallout";
@@ -111,7 +111,7 @@
       # Since we have a wildcard vhost to handle port 80,
       # we can generate certs for anything!
       # Just make sure your DNS resolves them.
-      # extraDomainNames = [ "www.artslob.me" ];
+      # extraDomainNames = [ "subd-rk-1.artslob.me" "subd-rk-2.artslob.me" ];
     };
   };
 
