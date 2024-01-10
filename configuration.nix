@@ -75,7 +75,7 @@
       forceSSL = true;
       enableACME = true;
       default = true;
-      serverAliases = [ "artslob.ru" "www.artslob.ru" ];
+      serverAliases = [ "artslob.me" "artslob.ru" "www.artslob.ru" ];
       root = "/etc/artslob.me/www-fallout";
     };
     virtualHosts."subd-rk-1.artslob.me" = {
