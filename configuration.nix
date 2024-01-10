@@ -75,17 +75,20 @@
       forceSSL = true;
       enableACME = true;
       default = true;
+      serverAliases = [ "artslob.ru" "www.artslob.ru" ];
       root = "/etc/artslob.me/www-fallout";
     };
     virtualHosts."subd-rk-1.artslob.me" = {
       forceSSL = true;
       enableACME = true;
+      serverAliases = [ "subd-rk-1.artslob.ru" ];
       root = "/etc/artslob.me/subd_rk/rk1";
       locations."/" = { extraConfig = "autoindex on;"; };
     };
     virtualHosts."subd-rk-2.artslob.me" = {
       forceSSL = true;
       enableACME = true;
+      serverAliases = [ "subd-rk-2.artslob.ru" ];
       root = "/etc/artslob.me/subd_rk/rk2";
       locations."/" = { extraConfig = "autoindex on;"; };
     };
