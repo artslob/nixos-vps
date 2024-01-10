@@ -92,6 +92,13 @@
       root = "/etc/artslob.me/subd_rk/rk2";
       locations."/" = { extraConfig = "autoindex on;"; };
     };
+    virtualHosts."share.artslob.me" = {
+      forceSSL = true;
+      enableACME = true;
+      serverAliases = [ "share.artslob.ru" ];
+      root = "/etc/artslob.me/share";
+      locations."/" = { extraConfig = "autoindex on;"; };
+    };
   };
 
   environment.etc."artslob.me".source = builtins.fetchGit {
