@@ -103,14 +103,12 @@
 
   environment.etc."artslob.me".source = builtins.fetchGit {
     url = "https://github.com/artslob/artslob.ru";
-    rev = "a9f4d9cd761260d4145986fd71cc1512a96b907a";
-    submodules = true;
+    rev = "a2abeb1ab978845a5b314a949bc252aab41b58f1";
   };
 
   environment.etc."subd_rk".source = builtins.fetchGit {
     url = "https://github.com/artslob/SUBD_RK";
     rev = "ab116e7df29d9d77c044fe77ec099c822102453f";
-    submodules = true;
   };
 
   security.acme = {
