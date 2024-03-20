@@ -82,14 +82,14 @@
       forceSSL = true;
       enableACME = true;
       serverAliases = [ "subd-rk-1.artslob.ru" ];
-      root = "/etc/artslob.me/subd_rk/rk1";
+      root = "/etc/subd_rk/rk1";
       locations."/" = { extraConfig = "autoindex on;"; };
     };
     virtualHosts."subd-rk-2.artslob.me" = {
       forceSSL = true;
       enableACME = true;
       serverAliases = [ "subd-rk-2.artslob.ru" ];
-      root = "/etc/artslob.me/subd_rk/rk2";
+      root = "/etc/subd_rk/rk2";
       locations."/" = { extraConfig = "autoindex on;"; };
     };
     virtualHosts."share.artslob.me" = {
@@ -104,6 +104,12 @@
   environment.etc."artslob.me".source = builtins.fetchGit {
     url = "https://github.com/artslob/artslob.ru";
     rev = "a9f4d9cd761260d4145986fd71cc1512a96b907a";
+    submodules = true;
+  };
+
+  environment.etc."subd_rk".source = builtins.fetchGit {
+    url = "https://github.com/artslob/SUBD_RK";
+    rev = "ab116e7df29d9d77c044fe77ec099c822102453f";
     submodules = true;
   };
 
