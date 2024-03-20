@@ -71,6 +71,18 @@ rm -rf /etc/nixos
 ln -s "$(pwd)/nixos-vps" /etc/nixos
 ```
 
+## Updating config
+
+To upload file to server:
+```bash
+rsync -rv -e ssh /local/path/to/configuration.nix  artslob@vps:/home/artslob/nixos-vps/configuration.nix
+```
+
+To connect as root:
+```bash
+ssh artslob@vps -t 'bash -l -c "sudo -s"'
+```
+
 ## VPS naming
 
 For pets: international radiotelephony
