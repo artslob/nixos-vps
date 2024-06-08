@@ -66,6 +66,8 @@
       PermitRootLogin = "no";
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
+      ClientAliveInterval = 60;
+      ClientAliveCountMax = 30;
     };
   };
 
