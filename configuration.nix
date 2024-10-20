@@ -17,6 +17,8 @@
 
   time.timeZone = "Asia/Bangkok";
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   users.users.artslob = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
