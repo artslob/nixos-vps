@@ -17,7 +17,10 @@
 
   time.timeZone = "Asia/Bangkok";
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    trusted-users = [ "artslob" ];
+  };
 
   users.users.artslob = {
     isNormalUser = true;

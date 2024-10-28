@@ -83,6 +83,13 @@ To connect as root:
 ssh artslob@vps -t 'bash -l -c "sudo -s"'
 ```
 
+## Flakes
+
+To do [remote delployment with flakes](https://nixos-and-flakes.thiscute.world/best-practices/remote-deployment) run:
+```bash
+nixos-rebuild switch --flake .#vps --target-host vps --verbose --use-remote-sudo
+```
+
 ## VPS naming
 
 For pets: international radiotelephony
