@@ -90,6 +90,14 @@ To do [remote delployment with flakes](https://nixos-and-flakes.thiscute.world/b
 nixos-rebuild switch --flake .#vps --target-host vps --verbose --use-remote-sudo
 ```
 
+If you get error
+```
+error: cannot add path '/nix/store/...' because it lacks a signature by a trusted key
+```
+Make sure target host has correct `trusted-users = <user>` in `/etc/nix/nix.conf`.
+It's set by `nix.settings.trusted-users` in `configuration.nix`, but you need to bootstrap
+it somehow first, for example connecting by ssh and manually applying this setting.
+
 ## VPS naming
 
 For pets: international radiotelephony
