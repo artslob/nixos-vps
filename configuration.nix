@@ -19,7 +19,7 @@
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = [ "artslob" ];
+    trusted-users = [ "root" "artslob" ];
   };
 
   users.users.artslob = {
