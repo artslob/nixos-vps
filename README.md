@@ -98,6 +98,13 @@ Make sure target host has correct `trusted-users = <user>` in `/etc/nix/nix.conf
 It's set by `nix.settings.trusted-users` in `configuration.nix`, but you need to bootstrap
 it somehow first, for example connecting by ssh and manually applying this setting.
 
+## Secrets
+
+To edit secret run command:
+```bash
+agenix -e secrets/secret1.age -i ~/path/to/private/key
+```
+
 ## VPS naming
 
 For pets: international radiotelephony
