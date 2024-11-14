@@ -11,4 +11,6 @@ pkgs.mkShell {
   ];
 
   nativeBuildInputs = with pkgs; [ pkg-config ];
+
+  EDITOR = "vim";
 }
