@@ -47,7 +47,7 @@
     git
     htop
     stow
-    nixfmt
+    nixfmt-classic
     pre-commit
     openvpn
     ripgrep
