@@ -171,7 +171,18 @@
     };
   };
 
+  services.github-runners = {
+    test-github-runner = {
+      enable = true;
+      name = "test-github-runner";
+      tokenFile = config.age.secrets."test-github-runner-token".path;
+      url = "https://github.com/artslob/test-github-runner";
+    };
+  };
+
   age.secrets.secret1.file = ./secrets/secret1.age;
+  age.secrets."test-github-runner-token".file =
+    ./secrets/test-github-runner-token.age;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
