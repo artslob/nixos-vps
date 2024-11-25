@@ -178,7 +178,7 @@
       name = "test-github-runner";
       tokenFile = config.age.secrets."test-github-runner-token".path;
       url = "https://github.com/artslob/test-github-runner";
-      extraPackages = with pkgs; [ curl wget rustup ];
+      extraPackages = with pkgs; [ curl wget rustup gcc ];
     };
   };
 

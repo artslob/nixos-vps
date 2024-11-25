@@ -105,6 +105,10 @@ To edit secret run command:
 agenix -e secrets/secret1.age -i ~/path/to/private/key
 ```
 
+## Guthub runner
+
+I use "Fine-grained personal access tokens" with Read and Write access to actions and administration.
+
 ## VPS naming
 
 For pets: international radiotelephony
