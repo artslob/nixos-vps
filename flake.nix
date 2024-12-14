@@ -19,11 +19,9 @@
         {
           nixpkgs.overlays = [
             (final: prev: {
-              patched-github-runner = prev.github-runner.overrideAttrs
-                (oldAttrs: {
-                  patches = oldAttrs.patches or [ ]
-                    ++ [ ./github-runner.patch ];
-                });
+              github-runner = prev.github-runner.overrideAttrs (oldAttrs: {
+                patches = oldAttrs.patches or [ ] ++ [ ./github-runner.patch ];
+              });
             })
           ];
         }
