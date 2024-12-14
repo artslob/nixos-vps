@@ -33,6 +33,12 @@
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDGu+Aro+2eufX4/TsFavrtOuS+NUqXKAFa0GhQK+uaGS0h3fQhy+t2P8iLerWpORuGUfmrGHR8eHiug6rzRQTQWWaMWrJW+8pydxtNqoBmOxs85KRbuLUZZyUb5hJG/tkFTJUHVADMQ4CI7vuu+ofdkQlhhtaRwqyTLP3HSEz782H46AYsgH4j10hpCtY86bdnCL18y+FdSy2rp7lbrNyHYT/ezwkf0hhzXhCydfaxOdMP5xr+4hXblPkexXjX5iWmeSaBhnlsdMt6qd3yP3JVde92LCyAf5TZNWhRbFZx48UfBMvOh+ADTDS6iv764svFSw5Cp6TcJzM3eobJuTnAC3aSXZnotomTud5c+BKAzFdbCbAm6b/pZ/x5tycWJSXz3M82c3FZZ5Tm5hT9zeYbxyvHdhrCEBVwN5WkdI3DJaIOJ4yZZMVM9nYoCnwA4HBI4D19A/w1F7tgPAeFM97RMKwaxzBZsV0H9H3f0czx6FsqSq/2wJDQLhX+DtaEZhOQzR3b6gOgN4XUlkvuACVMFtMtfIhQY00lCyWL3yuiMoHiuoE2vidb1b2lW+cAjgRV31NO4x7m2lV2fPTae/zmlk/Z4faKNb4CUOUwUUBVhJiYt1oeWxDQhXtEjZ5+plkAoMvPXE5jQ2mLzkc8qYHoqqqtIj4uG5r+J0gCgkesXQ== artslob@yandex.ru"
     ];
   };
+  # users.users.github-runner = {
+  #   isSystemUser = true;
+  #   shell = pkgs.bash;
+  #   group = "github-runner";
+  #   extraGroups = [ "wheel" "docker" ];
+  # };
   security.sudo.extraRules = [{
     users = [ "artslob" ];
     commands = [{
@@ -40,6 +46,7 @@
       options = [ "NOPASSWD" "SETENV" ];
     }];
   }];
+  # users.groups.github-runner = {};
 
   environment.systemPackages = with pkgs; [
     vim
@@ -62,6 +69,7 @@
     zoxide # smarter cd command
     difftastic # syntax-aware diff
     delta # syntax-highlighting pager for git
+    docker_27
   ];
 
   programs.ssh.startAgent = true;
@@ -172,13 +180,17 @@
     };
   };
 
+  virtualisation.docker.enable = true;
+
   services.github-runners = {
     test-github-runner = {
       enable = true;
       name = "test-github-runner";
+      # user = "github-runner";
+      # replace = true;
       tokenFile = config.age.secrets."test-github-runner-token".path;
       url = "https://github.com/artslob/test-github-runner";
-      extraPackages = with pkgs; [ curl wget rustup gcc ];
+      extraPackages = with pkgs; [ curl wget rustup gcc docker_27 ];
     };
   };
 
