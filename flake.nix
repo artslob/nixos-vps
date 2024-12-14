@@ -16,6 +16,17 @@
     nixosConfigurations.vps = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        {
+          nixpkgs.overlays = [
+            (final: prev: {
+              patched-github-runner = prev.github-runner.overrideAttrs
+                (oldAttrs: {
+                  patches = oldAttrs.patches or [ ]
+                    ++ [ ./github-runner.patch ];
+                });
+            })
+          ];
+        }
         # Import the previous configuration.nix we used,
         # so the old configuration file still takes effect
         ./configuration.nix

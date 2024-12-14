@@ -188,6 +188,7 @@
       name = "test-github-runner";
       # user = "github-runner";
       # replace = true;
+      package = pkgs.patched-github-runner;
       tokenFile = config.age.secrets."test-github-runner-token".path;
       url = "https://github.com/artslob/test-github-runner";
       extraPackages = with pkgs; [ curl wget rustup gcc docker_27 ];
