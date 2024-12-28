@@ -105,9 +105,12 @@ To edit secret run command:
 agenix -e secrets/secret1.age -i ~/path/to/private/key
 ```
 
-## Guthub runner
+## Github runner
 
 I use "Fine-grained personal access tokens" with Read and Write access to actions and administration.
+
+Issues:
+1. `actions/checkout` [does not work with docker](https://github.com/actions/checkout/issues/334) - Github runner bug, unknown when it would be fixed.
 
 ## VPS naming
 
