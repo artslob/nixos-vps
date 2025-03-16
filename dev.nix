@@ -12,6 +12,7 @@ pkgs.mkShell {
     nixfmt-classic
     nixos-rebuild
     (pkgs.callPackage "${agenix}/pkgs/agenix.nix" { })
+    wireguard-tools
   ];
 
   nativeBuildInputs = with pkgs; [ pkg-config ];

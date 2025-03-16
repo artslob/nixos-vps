@@ -14,4 +14,5 @@ let
 in {
   "secrets/secret1.age".publicKeys = all;
   "secrets/test-github-runner-token.age".publicKeys = all;
+  "secrets/wireguard-private-key.age".publicKeys = all;
 }
