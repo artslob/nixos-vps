@@ -32,6 +32,7 @@
       # Note: The private key can also be included inline via the privateKey option,
       # but this makes the private key world-readable; thus, using privateKeyFile is
       # recommended.
+      # Public key is "dxEQSmJWCwdfgClqdlJqU67/VygySWjF/aL38twE6BE="
       privateKeyFile = config.age.secrets."wireguard-private-key".path;
 
       peers = [
