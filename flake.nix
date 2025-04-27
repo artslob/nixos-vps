@@ -13,6 +13,7 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
+    # TODO add dev shell here instead of dev.nix
     nixosConfigurations.vps = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
