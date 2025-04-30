@@ -98,6 +98,13 @@ Make sure target host has correct `trusted-users = <user>` in `/etc/nix/nix.conf
 It's set by `nix.settings.trusted-users` in `configuration.nix`, but you need to bootstrap
 it somehow first, for example connecting by ssh and manually applying this setting.
 
+## Local development
+
+Use shell environment powered by flakes:
+```bash
+nix develop
+```
+
 ## Secrets
 
 To edit secret run command:
