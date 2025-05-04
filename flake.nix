@@ -21,7 +21,7 @@
               (final: prev: {
                 github-runner = prev.github-runner.overrideAttrs (oldAttrs: {
                   patches = oldAttrs.patches or [ ]
-                    ++ [ ./github-runner.patch ];
+                    ++ [ ./patches/github-runner.patch ];
                 });
               })
             ];
