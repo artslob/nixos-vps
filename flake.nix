@@ -1,5 +1,5 @@
 {
-  description = "A simple NixOS flake";
+  description = "VPS NixOS flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
@@ -26,9 +26,7 @@
               })
             ];
           }
-          # Import the previous configuration.nix we used,
-          # so the old configuration file still takes effect
-          ./configuration.nix
+          ./configuration
           agenix.nixosModules.default
         ];
       };

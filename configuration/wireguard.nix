@@ -20,7 +20,7 @@
   };
 
   age.secrets."wireguard-private-key".file =
-    ./secrets/wireguard-private-key.age;
+    ../secrets/wireguard-private-key.age;
 
   networking.wg-quick.interfaces = {
     # "wg0" is the network interface name. You can name the interface arbitrarily.
