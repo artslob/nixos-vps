@@ -53,14 +53,14 @@
       # Note: The private key can also be included inline via the privateKey option,
       # but this makes the private key world-readable; thus, using privateKeyFile is
       # recommended.
-      # Public key is "dxEQSmJWCwdfgClqdlJqU67/VygySWjF/aL38twE6BE="
+      # Public key is "badrGTyvIsmQUK1k2rjSUxfInUdJXjWzsq0qm86Df3E="
       privateKeyFile = config.age.secrets."wireguard-private-key".path;
 
       peers = [
         # List of allowed peers.
         { # Feel free to give a meaning full name
           # Public key of the peer (not a file path).
-          publicKey = "2wrhPpl3w6BM06BzNQRkgGMmIOwGaEFLMImGZY9iYS8=";
+          publicKey = "xPcwiKuWVZvG/Q+1fMoHarC+SXUnmpAgxrC6OOHx9As=";
           # List of IPs assigned to this peer within the tunnel subnet. Used to configure routing.
           allowedIPs = [ "10.0.0.2/32" "fdc9:281f:04d7:9ee9::2/128" ];
         }
