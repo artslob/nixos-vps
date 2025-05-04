@@ -10,7 +10,10 @@
     allowedUDPPorts = [ 53 51820 ];
   };
   networking.enableIPv6 = true;
-  boot.kernel.sysctl = { "net.ipv6.conf.all.forwarding" = "1"; };
+  boot.kernel.sysctl = {
+    "net.ipv6.conf.all.forwarding" = "1";
+    "net.ipv6.conf.default.forwarding" = "1";
+  };
   services.dnsmasq = {
     enable = true;
     settings.interface = "wg0";
