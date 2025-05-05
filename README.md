@@ -119,6 +119,15 @@ I use "Fine-grained personal access tokens" with Read and Write access to action
 Issues:
 1. `actions/checkout` [does not work with docker](https://github.com/actions/checkout/issues/334) - Github runner bug, unknown when it would be fixed.
 
+## Wireguard
+
+To generate keypair:
+```bash
+umask 077
+wg genkey > private
+wg pubkey < private > public
+```
+
 ## VPS naming
 
 For pets: international radiotelephony

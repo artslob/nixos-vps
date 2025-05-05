@@ -50,10 +50,27 @@
     # Public key is "badrGTyvIsmQUK1k2rjSUxfInUdJXjWzsq0qm86Df3E="
     privateKeyFile = config.age.secrets."wireguard-private-key".path;
 
-    peers = [{
-      publicKey = "xPcwiKuWVZvG/Q+1fMoHarC+SXUnmpAgxrC6OOHx9As=";
-      # List of IPs assigned to this peer within the tunnel subnet. Used to configure routing.
-      allowedIPs = [ "10.0.0.2/32" "fdc9:281f:04d7:9ee9::2/128" ];
-    }];
+    peers = [
+      {
+        # loq
+        publicKey = "xPcwiKuWVZvG/Q+1fMoHarC+SXUnmpAgxrC6OOHx9As=";
+        allowedIPs = [ "10.0.0.2/32" "fdc9:281f:04d7:9ee9::2/128" ];
+      }
+      {
+        # android
+        publicKey = "3EnDSPQEXk2WLC6QR0My2hRWG7s2Svp0zM5HxZd0OHQ=";
+        allowedIPs = [ "10.0.0.3/32" "fdc9:281f:04d7:9ee9::3/128" ];
+      }
+      {
+        # iphone
+        publicKey = "myY2fbonsnn+YmLBE2PvvGYaZHfIH/ocbnguUhyAR2s=";
+        allowedIPs = [ "10.0.0.4/32" "fdc9:281f:04d7:9ee9::4/128" ];
+      }
+      {
+        # nat.s
+        publicKey = "wYA0p4wrOVxF8mTOkPeBlAmiiQBlV9T0dF0NS2h9Li4=";
+        allowedIPs = [ "10.0.0.5/32" "fdc9:281f:04d7:9ee9::5/128" ];
+      }
+    ];
   };
 }
