@@ -128,6 +128,11 @@ wg genkey > private
 wg pubkey < private > public
 ```
 
+To generate QR image for wireguard client on mobile app :
+```bash
+qrencode -r file.conf -o conf.png
+```
+
 ## VPS naming
 
 For pets: international radiotelephony

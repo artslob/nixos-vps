@@ -39,6 +39,7 @@
             nixos-rebuild
             agenix.packages.${system}.default
             wireguard-tools
+            qrencode
           ];
           EDITOR = "vim";
         };
