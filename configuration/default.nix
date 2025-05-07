@@ -14,11 +14,18 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
 
-  networking.hostName = "alfa";
-  networking.enableIPv6 = true;
-  networking.defaultGateway6 = {
-    address = "fe80::1";
-    interface = "ens18";
+  networking = {
+    hostName = "alfa";
+    enableIPv6 = true;
+    defaultGateway6 = {
+      address = "fe80::1";
+      interface = "ens18";
+    };
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 22 53 80 443 ];
+      allowedUDPPorts = [ 53 ];
+    };
   };
 
   time.timeZone = "Asia/Bangkok";
@@ -158,12 +165,6 @@
   # and readable by the Nginx user. The easiest way to achieve
   # this is to add the Nginx user to the ACME group.
   users.users.nginx.extraGroups = [ "acme" ];
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = false;
 
   programs.bash.shellAliases = {
     p = "pwd";
