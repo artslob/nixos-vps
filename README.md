@@ -121,6 +121,11 @@ Issues:
 
 ## Wireguard
 
+To connect edit file from `examples/wireguard/client.conf` and run:
+```
+sudo wg-quick up client.conf
+```
+
 To generate keypair:
 ```bash
 umask 077
