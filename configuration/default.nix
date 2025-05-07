@@ -25,6 +25,7 @@
       enable = true;
       allowedTCPPorts = [ 22 53 80 443 ];
       allowedUDPPorts = [ 53 ];
+      pingLimit = "--limit 5/second --limit-burst 20";
     };
   };
 
