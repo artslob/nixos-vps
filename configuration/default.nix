@@ -5,11 +5,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    ./wireguard.nix
-  ];
+  imports = [ ./hardware-configuration.nix ./wireguard.nix ];
 
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
@@ -29,7 +25,7 @@
     };
   };
 
-  time.timeZone = "Asia/Bangkok";
+  time.timeZone = "Asia/Tel_Aviv";
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
