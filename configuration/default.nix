@@ -98,6 +98,23 @@
     };
   };
 
+  services.fail2ban = {
+    enable = true;
+    maxretry = 5;
+    bantime = "1h";
+    bantime-increment.enable = true;
+    jails.sshd = {
+      settings = {
+        enabled = true;
+        port = "ssh";
+        filter = "sshd";
+        maxretry = 5;
+        findtime = "10m";
+        bantime = "1h";
+      };
+    };
+  };
+
   services.nginx = {
     enable = true;
     virtualHosts."www.artslob.me" = {
