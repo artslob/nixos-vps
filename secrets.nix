@@ -12,6 +12,7 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBNx5a3WMd3VVY42Gtz2rUvb+8WK8yZjsk5O3q4TqRmD"
   ];
 in {
+  "secrets/bitcoind-rpcpassword.age".publicKeys = all;
   "secrets/secret1.age".publicKeys = all;
   "secrets/test-github-runner-token.age".publicKeys = all;
   "secrets/wireguard-private-key.age".publicKeys = all;
