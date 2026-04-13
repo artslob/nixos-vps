@@ -76,13 +76,13 @@
     bat # cat clone with syntax highlighting
     eza # alternative to ls
     lsd # alternative to ls
-    du-dust # disk usage
+    dust # disk usage
     procs # info about processes
     broot # combines tree, cd and more
     zoxide # smarter cd command
     difftastic # syntax-aware diff
     delta # syntax-highlighting pager for git
-    docker_27
+    docker
   ];
 
   programs.ssh.startAgent = true;
@@ -215,7 +215,7 @@
       ephemeral = true;
       tokenFile = config.age.secrets."test-github-runner-token".path;
       url = "https://github.com/artslob/test-github-runner";
-      extraPackages = with pkgs; [ curl wget rustup gcc docker_27 ];
+      extraPackages = with pkgs; [ curl wget rustup gcc docker ];
     };
   };
 
