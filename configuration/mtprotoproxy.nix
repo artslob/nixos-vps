@@ -10,8 +10,12 @@ let
     cat > $CONFIG_DIR/config.py <<PYEOF
     PORT = 8443
     USERS = {"tg": "$SECRET"}
-    SECURE_ONLY = True
-    TLS_DOMAIN = "www.google.com"
+    MODES = {
+        "classic": False,
+        "secure": True,
+        "tls": True
+    }
+    TLS_DOMAIN = "pages.cloudflare.com"
     PYEOF
     exec ${pkgs.mtprotoproxy}/bin/mtprotoproxy $CONFIG_DIR/config.py
   '';
