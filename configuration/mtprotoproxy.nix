@@ -1,8 +1,10 @@
 { config, pkgs, ... }:
 
 let
+  secretPath = config.age.secrets.mtprotoproxy-secret.path;
+
   startScript = pkgs.writeShellScript "mtprotoproxy-start" ''
-    SECRET=$(cat ${config.age.secrets.mtprotoproxy-secret.path} | tr -d '[:space:]')
+    SECRET=$(cat ${secretPath} | tr -d '[:space:]')
     CONFIG_DIR=/run/mtprotoproxy
     mkdir -p $CONFIG_DIR
     cat > $CONFIG_DIR/config.py <<PYEOF
@@ -14,10 +16,16 @@ let
     exec ${pkgs.mtprotoproxy}/bin/mtprotoproxy $CONFIG_DIR/config.py
   '';
 in {
+  users.users.mtprotoproxy = {
+    isSystemUser = true;
+    group = "mtprotoproxy";
+  };
+  users.groups.mtprotoproxy = { };
+
   age.secrets.mtprotoproxy-secret = {
     file = ../secrets/mtprotoproxy-secret.age;
-    owner = "root";
-    group = "root";
+    owner = "mtprotoproxy";
+    group = "mtprotoproxy";
     mode = "0400";
   };
 
@@ -27,10 +35,11 @@ in {
     after = [ "network.target" ];
     serviceConfig = {
       ExecStart = startScript;
+      User = "mtprotoproxy";
+      Group = "mtprotoproxy";
       Restart = "on-failure";
       RestartSec = "5s";
       RuntimeDirectory = "mtprotoproxy";
-      DynamicUser = true;
       NoNewPrivileges = true;
       ProtectSystem = "strict";
       ProtectHome = true;
