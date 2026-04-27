@@ -16,4 +16,7 @@ in {
   "secrets/test-github-runner-token.age".publicKeys = all;
   "secrets/wireguard-private-key.age".publicKeys = all;
   "secrets/mtprotoproxy-secret.age".publicKeys = all;
+  "secrets/xray-uuid.age".publicKeys = all;
+  "secrets/xray-reality-private-key.age".publicKeys = all;
+  "secrets/xray-short-id.age".publicKeys = all;
 }

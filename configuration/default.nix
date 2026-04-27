@@ -5,7 +5,12 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ./wireguard.nix ./mtprotoproxy.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./wireguard.nix
+    ./mtprotoproxy.nix
+    ./xray.nix
+  ];
 
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
@@ -115,9 +120,29 @@
     };
   };
 
-  services.nginx = {
+  services.nginx = let
+    # Xray Reality takes over public :443; nginx HTTPS moves to localhost:8444.
+    # Port 80 stays public for ACME challenges and HTTP→HTTPS redirects.
+    # Port 8443 is taken by mtprotoproxy.
+    vhostListen = [
+      {
+        addr = "0.0.0.0";
+        port = 80;
+      }
+      {
+        addr = "[::]";
+        port = 80;
+      }
+      {
+        addr = "127.0.0.1";
+        port = 8444;
+        ssl = true;
+      }
+    ];
+  in {
     enable = true;
     virtualHosts."www.artslob.me" = {
+      listen = vhostListen;
       forceSSL = true;
       enableACME = true;
       default = true;
@@ -125,6 +150,7 @@
       root = "/etc/artslob.me/www-fallout";
     };
     virtualHosts."subd-rk-1.artslob.me" = {
+      listen = vhostListen;
       forceSSL = true;
       enableACME = true;
       serverAliases = [ "subd-rk-1.artslob.ru" ];
@@ -132,6 +158,7 @@
       locations."/" = { extraConfig = "autoindex on;"; };
     };
     virtualHosts."subd-rk-2.artslob.me" = {
+      listen = vhostListen;
       forceSSL = true;
       enableACME = true;
       serverAliases = [ "subd-rk-2.artslob.ru" ];
@@ -139,6 +166,7 @@
       locations."/" = { extraConfig = "autoindex on;"; };
     };
     virtualHosts."share.artslob.me" = {
+      listen = vhostListen;
       forceSSL = true;
       enableACME = true;
       serverAliases = [ "share.artslob.ru" ];
