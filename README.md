@@ -87,7 +87,7 @@ ssh artslob@vps -t 'bash -l -c "sudo -s"'
 
 To do [remote delployment with flakes](https://nixos-and-flakes.thiscute.world/best-practices/remote-deployment) run:
 ```bash
-nixos-rebuild switch --flake .#vps --target-host vps --verbose --use-remote-sudo
+nixos-rebuild switch --flake .#vps --target-host vps --verbose --sudo
 ```
 
 If you get error
