@@ -12,11 +12,14 @@
     enableIPv6 = true;
   };
   networking.firewall = {
-    allowedTCPPorts = [ 53 ];
-    allowedUDPPorts = [
-      53
-      51820
-    ];
+    # WireGuard endpoint — must be reachable from the public internet.
+    allowedUDPPorts = [ 51820 ];
+    # dnsmasq serves DNS only to VPN peers, so open 53 on the wg0 interface
+    # only. A globally reachable :53 resolver invites DNS-amplification abuse.
+    interfaces.wg0 = {
+      allowedTCPPorts = [ 53 ];
+      allowedUDPPorts = [ 53 ];
+    };
   };
   networking.enableIPv6 = true;
   boot.kernel.sysctl = {
@@ -25,7 +28,13 @@
   };
   services.dnsmasq = {
     enable = true;
-    settings.interface = "wg0";
+    settings = {
+      interface = "wg0";
+      # Bind to wg0 (and loopback, which dnsmasq adds automatically) instead of
+      # the wildcard 0.0.0.0:53 socket. bind-dynamic copes with wg0 appearing
+      # after dnsmasq starts, unlike bind-interfaces.
+      bind-dynamic = true;
+    };
   };
 
   age.secrets."wireguard-private-key".file = ../secrets/wireguard-private-key.age;

@@ -32,11 +32,11 @@
       enable = true;
       allowedTCPPorts = [
         22
-        53
         80
         443
       ];
-      allowedUDPPorts = [ 53 ];
+      # DNS (53) is deliberately NOT opened globally — it is scoped to the
+      # wg0 interface in wireguard.nix so the box is not a public open resolver.
       pingLimit = "--limit 5/second --limit-burst 20";
     };
   };
