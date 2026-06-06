@@ -2,7 +2,7 @@
   description = "VPS NixOS flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     flake-utils.url = "github:numtide/flake-utils";
     agenix = {
       url = "github:ryantm/agenix";
@@ -35,7 +35,8 @@
       in {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
-            nixfmt-classic
+            nixfmt
+            nixfmt-tree
             nixos-rebuild
             agenix.packages.${system}.default
             wireguard-tools
