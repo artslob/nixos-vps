@@ -1,35 +1,46 @@
 { config, pkgs, ... }:
 
 let
-  xrayConfigBase = pkgs.writeText "xray-config-base.json" (builtins.toJSON {
-    log = { loglevel = "warning"; };
-    inbounds = [{
-      listen = "0.0.0.0";
-      port = 443;
-      protocol = "vless";
-      settings = {
-        clients = [{
-          id = "PLACEHOLDER_UUID";
-          flow = "";
-        }];
-        decryption = "none";
+  xrayConfigBase = pkgs.writeText "xray-config-base.json" (
+    builtins.toJSON {
+      log = {
+        loglevel = "warning";
       };
-      streamSettings = {
-        network = "xhttp";
-        security = "reality";
-        realitySettings = {
-          show = false;
-          dest = "127.0.0.1:8444";
-          xver = 0;
-          serverNames = [ "www.artslob.me" "artslob.me" ];
-          privateKey = "PLACEHOLDER_KEY";
-          shortIds = [ "PLACEHOLDER_SID" ];
-        };
-        xhttpSettings = { };
-      };
-    }];
-    outbounds = [{ protocol = "freedom"; }];
-  });
+      inbounds = [
+        {
+          listen = "0.0.0.0";
+          port = 443;
+          protocol = "vless";
+          settings = {
+            clients = [
+              {
+                id = "PLACEHOLDER_UUID";
+                flow = "";
+              }
+            ];
+            decryption = "none";
+          };
+          streamSettings = {
+            network = "xhttp";
+            security = "reality";
+            realitySettings = {
+              show = false;
+              dest = "127.0.0.1:8444";
+              xver = 0;
+              serverNames = [
+                "www.artslob.me"
+                "artslob.me"
+              ];
+              privateKey = "PLACEHOLDER_KEY";
+              shortIds = [ "PLACEHOLDER_SID" ];
+            };
+            xhttpSettings = { };
+          };
+        }
+      ];
+      outbounds = [ { protocol = "freedom"; } ];
+    }
+  );
 
   startScript = pkgs.writeShellScript "xray-start" ''
     set -euo pipefail
@@ -50,7 +61,8 @@ let
 
     exec ${pkgs.xray}/bin/xray run -config /run/xray/config.json
   '';
-in {
+in
+{
   age.secrets.xray-uuid = {
     file = ../secrets/xray-uuid.age;
     owner = "xray";

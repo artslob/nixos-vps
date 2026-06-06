@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   networking.nat = {
     enable = true;
     externalInterface = "ens18";
@@ -7,7 +13,10 @@
   };
   networking.firewall = {
     allowedTCPPorts = [ 53 ];
-    allowedUDPPorts = [ 53 51820 ];
+    allowedUDPPorts = [
+      53
+      51820
+    ];
   };
   networking.enableIPv6 = true;
   boot.kernel.sysctl = {
@@ -19,13 +28,15 @@
     settings.interface = "wg0";
   };
 
-  age.secrets."wireguard-private-key".file =
-    ../secrets/wireguard-private-key.age;
+  age.secrets."wireguard-private-key".file = ../secrets/wireguard-private-key.age;
 
   # "wg0" is the network interface name. You can name the interface arbitrarily.
   networking.wg-quick.interfaces.wg0 = {
     # Determines the IP address and subnet of the server's end of the tunnel interface.
-    address = [ "10.0.0.1/24" "fdc9:281f:04d7:9ee9::1/64" ];
+    address = [
+      "10.0.0.1/24"
+      "fdc9:281f:04d7:9ee9::1/64"
+    ];
 
     # The port that WireGuard listens to. Must be accessible by the client.
     listenPort = 51820;
@@ -54,22 +65,34 @@
       {
         # loq
         publicKey = "xPcwiKuWVZvG/Q+1fMoHarC+SXUnmpAgxrC6OOHx9As=";
-        allowedIPs = [ "10.0.0.2/32" "fdc9:281f:04d7:9ee9::2/128" ];
+        allowedIPs = [
+          "10.0.0.2/32"
+          "fdc9:281f:04d7:9ee9::2/128"
+        ];
       }
       {
         # android
         publicKey = "3EnDSPQEXk2WLC6QR0My2hRWG7s2Svp0zM5HxZd0OHQ=";
-        allowedIPs = [ "10.0.0.3/32" "fdc9:281f:04d7:9ee9::3/128" ];
+        allowedIPs = [
+          "10.0.0.3/32"
+          "fdc9:281f:04d7:9ee9::3/128"
+        ];
       }
       {
         # iphone
         publicKey = "myY2fbonsnn+YmLBE2PvvGYaZHfIH/ocbnguUhyAR2s=";
-        allowedIPs = [ "10.0.0.4/32" "fdc9:281f:04d7:9ee9::4/128" ];
+        allowedIPs = [
+          "10.0.0.4/32"
+          "fdc9:281f:04d7:9ee9::4/128"
+        ];
       }
       {
         # nat.s
         publicKey = "wYA0p4wrOVxF8mTOkPeBlAmiiQBlV9T0dF0NS2h9Li4=";
-        allowedIPs = [ "10.0.0.5/32" "fdc9:281f:04d7:9ee9::5/128" ];
+        allowedIPs = [
+          "10.0.0.5/32"
+          "fdc9:281f:04d7:9ee9::5/128"
+        ];
       }
     ];
   };

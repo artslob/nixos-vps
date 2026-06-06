@@ -11,7 +11,13 @@
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, agenix }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+      agenix,
+    }:
     {
       nixosConfigurations.vps = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -20,8 +26,7 @@
             nixpkgs.overlays = [
               (final: prev: {
                 github-runner = prev.github-runner.overrideAttrs (oldAttrs: {
-                  patches = oldAttrs.patches or [ ]
-                    ++ [ ./patches/github-runner.patch ];
+                  patches = oldAttrs.patches or [ ] ++ [ ./patches/github-runner.patch ];
                 });
               })
             ];
@@ -30,9 +35,13 @@
           agenix.nixosModules.default
         ];
       };
-    } // flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = import nixpkgs { inherit system; };
-      in {
+    }
+    // flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+      in
+      {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             nixfmt
@@ -44,5 +53,6 @@
           ];
           EDITOR = "vim";
         };
-      });
+      }
+    );
 }

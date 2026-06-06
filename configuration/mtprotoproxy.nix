@@ -19,7 +19,8 @@ let
     PYEOF
     exec ${pkgs.mtprotoproxy}/bin/mtprotoproxy $CONFIG_DIR/config.py
   '';
-in {
+in
+{
   users.users.mtprotoproxy = {
     isSystemUser = true;
     group = "mtprotoproxy";
