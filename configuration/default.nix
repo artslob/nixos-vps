@@ -17,9 +17,11 @@
     ./xray.nix
   ];
 
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.configurationLimit = 20;
+  boot.loader.grub = {
+    enable = true;
+    device = "/dev/sda";
+    configurationLimit = 20;
+  };
 
   networking = {
     hostName = "alfa";
