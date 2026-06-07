@@ -45,6 +45,7 @@ in
       Restart = "on-failure";
       RestartSec = "5s";
       RuntimeDirectory = "mtprotoproxy";
+      RuntimeDirectoryMode = "0700";
       NoNewPrivileges = true;
       ProtectSystem = "strict";
       ProtectHome = true;
