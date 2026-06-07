@@ -124,7 +124,6 @@
     zoxide # smarter cd command
     difftastic # syntax-aware diff
     delta # syntax-highlighting pager for git
-    docker
   ];
 
   programs.ssh.startAgent = true;
