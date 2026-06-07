@@ -307,7 +307,6 @@
   };
 
   age.secrets."artslob-password".file = ../secrets/artslob-password.age;
-  age.secrets.secret1.file = ../secrets/secret1.age;
   age.secrets."test-github-runner-token".file = ../secrets/test-github-runner-token.age;
 
   # Copy the NixOS configuration file and link it from the resulting system
