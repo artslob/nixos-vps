@@ -103,6 +103,14 @@
           "fdc9:281f:04d7:9ee9::5/128"
         ];
       }
+      {
+        # iphone17pro
+        publicKey = "QxY7dY+DLsP3MJpW04cHN5h2QQ5qIWV4hY3GEGoPCXQ=";
+        allowedIPs = [
+          "10.0.0.6/32"
+          "fdc9:281f:04d7:9ee9::6/128"
+        ];
+      }
     ];
   };
 }
