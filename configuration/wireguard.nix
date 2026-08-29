@@ -111,6 +111,14 @@
           "fdc9:281f:04d7:9ee9::6/128"
         ];
       }
+      {
+        # ipad
+        publicKey = "w1eR3BqXtpdJQBlg0zfUTzLNAXPYXHDwNaye5+ALNRo=";
+        allowedIPs = [
+          "10.0.0.7/32"
+          "fdc9:281f:04d7:9ee9::7/128"
+        ];
+      }
     ];
   };
 }
